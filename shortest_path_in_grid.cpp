@@ -1,3 +1,9 @@
+/**
+ * computing distance of each cell from the start-cell 
+ * avoiding obstacles 0 represents obstacle 1 represents non obstacle
+ * we can take only one step x-1;x+1;y-1;y+1
+ */
+
 #include<iostream>
 #include<queue>
 #include<stdio.h>
