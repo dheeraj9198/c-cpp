@@ -12,7 +12,7 @@ int main()
     int intArray[SIZE] = {5, 3, 32, -1, 1, 104, 53};
 
     //Now we call the sort function
-    sort(intArray, intArray + SIZE);
+    sort(intArray, intArray + SIZE,greater<int>());
 
     cout << "Sorted Array looks like this." << endl;
     for (size_t i = 0; i != SIZE; ++i)
