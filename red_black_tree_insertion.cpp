@@ -2,6 +2,7 @@
 #include <malloc.h>
 #include <iostream>
 void insert(struct node **root,int value);
+void traverse(struct node * root);
 struct node
 {
 	struct node * left;
@@ -21,7 +22,18 @@ int main()
 	{
 		insert(&root,array[x]);
 	}
-	printf("%d\n", root->value);
+	traverse(root);
+}
+
+void traverse(struct node * root)
+{
+	if(root == NULL)
+	{
+		return;
+	}
+	printf("%d ",root->value);
+	traverse(root->left);
+	traverse(root->right);
 }
 
 void insert(struct node **root,int value)
@@ -41,13 +53,19 @@ void insert(struct node **root,int value)
 		return;		
 	}
 
-	if(value > root->value)
+
+	struct node * x = *root;
+	while(x != NULL)
 	{
-		root->right = newNode;
+		if(x->value > value)
+		{
+			x=x->right;		
+		}else{
+			x=x->left;	
+		}
 	}
-	if(value < root->value)
-	{
-		root->left = newNode;
-	}
+	*x =  newNode;
+	
+	
 
 }
