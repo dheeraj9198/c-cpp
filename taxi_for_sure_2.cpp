@@ -29,7 +29,7 @@ b>>=1; // Right shifting the value contained in 'b' by 1.
 
 }
 
-void recursion(long dexter,long mandark,long test,long Mfactor,long Nrounds)
+void recursion(long dexter,long mandark,long Mfactor,long Nrounds,long pp)
 {
 	if((dexter+mandark) == Nrounds)
 	{
@@ -40,12 +40,23 @@ void recursion(long dexter,long mandark,long test,long Mfactor,long Nrounds)
 		}
 	}
 
-	if(dexter >= test+Mfactor)
+	if(Nrounds - mandark < mandark)
 	{
-		recursion(dexter+1,mandark,test,Mfactor,Nrounds);
-		recursion(dexter,mandark+1,test+Mfactor,Mfactor,Nrounds);
+		return;
+	}
+
+
+	if(Nrounds < mandark+pp)
+	{
+		return;
+	}
+
+	if(dexter >= pp + Mfactor)
+	{
+		recursion(dexter+1,mandark,Mfactor,Nrounds,pp);
+		recursion(dexter,mandark+1,Mfactor,Nrounds,pp+Mfactor);
 	}else{
-		recursion(dexter+1,mandark,test,Mfactor,Nrounds);
+		recursion(dexter+1,mandark,Mfactor,Nrounds,pp);
 	}
 }
 
@@ -69,7 +80,7 @@ int main()
 			dexter =0;
 			scanf("%ld",&roundM);
 			scanf("%ld",&factorM);
-			recursion(dexter,mandark,0,factorM,roundM);
+			recursion(dexter,mandark,factorM,roundM,0);
 			printf("%ld\n",win );
 	}
 
