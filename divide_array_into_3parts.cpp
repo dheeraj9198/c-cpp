@@ -1,5 +1,5 @@
-#include<iostream>
-#include<stdio.h>
+#include <iostream>
+#include <stdio.h>
 #include <algorithm>
 
 using namespace std;
@@ -44,5 +44,4 @@ int main()
 
 	printf("-------------------------------\n");
 	printf("largest number = %d\n",maximum(part1,part2,part3));
-
 }
