@@ -44,6 +44,7 @@ struct node * insertM(struct node * root, int p, int c) {
 		}
 		return root;
 	} else if (root->value == c) {
+		cout << "here" <<endl;
 		struct node * n = getNewNode(c);
 		n->left = root;
 		return n;
@@ -82,8 +83,7 @@ int main() {
 			root = getNewNode(myq.front().parent);
 			root->left = getNewNode(myq.front().child);
 			myq.pop();
-			continue;
-		} else {
+			} else {
 			temp = insertM(root, myq.front().parent, myq.front().child);
 			if (temp == NULL) {
 				myq.push(myq.front());
