@@ -16,8 +16,11 @@ public:
 	int parent;
 	int child;
 	ParentChild(int p, int c) {
-		child = c;
 		parent = p;
+		child = c;
+	}
+
+	ParentChild(){
 
 	}
 };
@@ -31,9 +34,11 @@ struct node * getNewNode(int value) {
 }
 
 struct node * insertM(struct node * root, int p, int c) {
+	//preorder(root);exit(10);
 	struct node * left;
 	struct node * right;
 	if (root->value == p) {
+		cout << "value = p" << endl;
 		if (root->left == NULL) {
 			root->left = getNewNode(c);
 		} else if (root->right == NULL) {
@@ -44,21 +49,22 @@ struct node * insertM(struct node * root, int p, int c) {
 		}
 		return root;
 	} else if (root->value == c) {
-		cout << "here" <<endl;
-		struct node * n = getNewNode(c);
+
+		struct node * n = getNewNode(p);
+
 		n->left = root;
 		return n;
 	} else {
 		if (root->left != NULL) {
 			left = insertM(root->left, p, c);
 			if (left != NULL) {
-				return left;
+				return root;
 			}
 
 		} else if (root->right != NULL) {
 			right = insertM(root->right, p, c);
 			if (right != NULL) {
-				return right;
+				return root;
 			}
 
 		}
@@ -76,6 +82,7 @@ int main() {
 
 	struct node * root = NULL;
 	struct node * temp;
+	ParentChild t;
 	while (!myq.empty()) {
 		cout << " inserting parent->" << myq.front().parent << " child->"
 				<< myq.front().child << endl;
@@ -86,8 +93,10 @@ int main() {
 			} else {
 			temp = insertM(root, myq.front().parent, myq.front().child);
 			if (temp == NULL) {
-				myq.push(myq.front());
+				cout << "NULL Returned"<<endl;
+				t = myq.front();
 				myq.pop();
+				myq.push(t);
 			} else {
 				root = temp;
 				myq.pop();
